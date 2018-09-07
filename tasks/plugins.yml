@@ -1,0 +1,7 @@
+---
+- name: Install plugins
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ graylog_plugin_dir }}/{{ item.name }}.jar"
+  with_items: "{{ graylog_plugins }}"
+  notify: restart graylog-server

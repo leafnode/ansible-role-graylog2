@@ -1,0 +1,45 @@
+---
+- name: Directory should be created with correct ownership and privileges
+  file:
+    path: '/etc/graylog/server'
+    owner: graylog
+    group: graylog
+    mode: '0750'
+
+- name: Graylog server should be configured
+  template:
+    src: 'graylog.server.conf.j2'
+    dest: '/etc/graylog/server/server.conf'
+    owner: graylog
+    group: graylog
+    mode: '0644'
+  notify: restart graylog-server
+
+- name: Graylog server defaults should be configured
+  template:
+    src: 'graylog.server.default.j2'
+    dest: '/etc/default/graylog-server'
+    owner: graylog
+    group: graylog
+    mode: '0644'
+  notify: restart graylog-server
+
+- name: Graylog server should start after reboot
+  file:
+    path: '/etc/init/graylog-server.override'
+    state: absent
+
+- name: Check if index configuration was installed
+  stat:
+    path: /etc/graylog/graylog-custom-mapping.json
+  register: graylog_custom_index
+
+- name: Upload index configuration
+  copy:
+    src: graylog-custom-mapping.json
+    dest: /etc/graylog/graylog-custom-mapping.json
+  when: graylog_custom_index.stat.exists == false
+
+- name: Load index configuration # note: this index will be used in the next rotation, not the current one
+  shell: curl -X PUT -d @'/etc/graylog/graylog-custom-mapping.json' 'http://localhost:9200/_template/graylog-custom-mapping?pretty'
+  when: graylog_custom_index.stat.exists == false
