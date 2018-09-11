@@ -2,5 +2,6 @@
 - hosts: localhost
   remote_user: root
   roles:
+    - java8
     - elasticsearch
     - ansible-role-graylog2
