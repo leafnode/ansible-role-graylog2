@@ -36,10 +36,10 @@
 
 - name: Upload index configuration
   copy:
-    src: graylog-custom-mapping.json
+    src: "{{ graylog_custom_mapping }}"
     dest: /etc/graylog/graylog-custom-mapping.json
-  when: graylog_custom_index.stat.exists == false
+  when: graylog_custom_mapping is defined and graylog_custom_index.stat.exists == false
 
 - name: Load index configuration # note: this index will be used in the next rotation, not the current one
   shell: curl -X PUT -d @'/etc/graylog/graylog-custom-mapping.json' 'http://localhost:9200/_template/graylog-custom-mapping?pretty'
-  when: graylog_custom_index.stat.exists == false
+  when: graylog_custom_mapping is defined and graylog_custom_index.stat.exists == false
