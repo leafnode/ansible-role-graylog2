@@ -49,6 +49,7 @@ graylog_elasticsearch_cluster_name:                     'graylog'
 graylog_elasticsearch_node_name_prefix:                 'graylog-'
 graylog_elasticsearch_transport_tcp_port:               9350
 graylog_elasticsearch_discovery_zen_ping_unicast_hosts: '127.0.0.1:9300'
+graylog_elasticsearch_hosts:                            'http://127.0.0.1:9200'
 graylog_elasticsearch_network_host:                     ''
 graylog_elasticsearch_network_bind_host:                ''
 graylog_elasticsearch_network_publish_host:             ''
@@ -59,6 +60,12 @@ graylog_elasticsearch_disable_version_check:            'True'
 graylog_elasticsearch_http_enabled:                     'False'
 graylog_disable_index_optimization:                     'True'
 graylog_index_optimization_max_num_segments:            1
+graylog_elasticsearch_max_retries:                      2
+graylog_elasticsearch_discovery_enabled:                'False'
+graylog_elasticsearch_discovery_filter:                 ''
+graylog_elasticsearch_discovery_frequency:              '30s'
+graylog_elasticsearch_max_total_connections:            20
+graylog_elasticsearch_max_total_connections_per_route:  2
 
 # Retention
 graylog_no_retention:                        'False'
@@ -93,6 +100,7 @@ graylog_async_eventbus_processors:        2
 graylog_elasticsearch_cluster_discovery_timeout:       5000
 graylog_elasticsearch_discovery_initial_state_timeout: '3s'
 graylog_elasticsearch_request_timeout:                 '1m'
+graylog_elasticsearch_connect_timeout:                 '10s'
 graylog_index_ranges_cleanup_interval:                 '1h'
 graylog_stream_processing_timeout:                     2000
 graylog_output_module_timeout:                         10000
