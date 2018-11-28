@@ -2,6 +2,6 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - java8
-    - elasticsearch
+    - iroquoisorg.java8
+    - iroquoisorg.elasticsearch
     - ansible-role-graylog2
