@@ -8,14 +8,14 @@
   apt_repository:
     repo: "{{ graylog_java_ppa }}"
     state: present
-    update_cache: True
+    update_cache: true
   when: ansible_distribution == 'Ubuntu'
 
 - name: 'Repositories should be updated (Debian)'
   apt_repository:
     repo: "{{ item }}"
     state: present
-    update_cache: True
+    update_cache: true
   with_items:
     - "{{ graylog_java_repo }}"
     - "{{ graylog_java_src_repo }}"
@@ -39,7 +39,7 @@
   apt:
     name: 'oracle-java8-installer'
     state: present
-    force: True
+    force: true
 
 - name: Graylog repository package should be downloaded
   get_url:
@@ -60,7 +60,7 @@
 
 - name: APT cache should be updated
   apt:
-    update_cache: True
+    update_cache: true
   when: install_repo.changed
 
 - name: Graylog server package should be installed

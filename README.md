@@ -188,10 +188,14 @@ graylog_server_args:          ''
 graylog_server_wrapper:       ''
 
 # Install Switches
-graylog_install_elasticsearch: True
+graylog_install_elasticsearch: true
 graylog_install_mongodb:       True
 graylog_install_nginx:         True
 
 graylog_plugins: []
 
 ```
+
+# Development
+
+Please check [development guide](DEVELOPMENT.md) for details about developing and testing this role.
