@@ -1,6 +1,6 @@
 # graylog2
 
-[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-graylog2.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-memcached)
+[![Build Status](https://travis-ci.com/iroquoisorg/ansible-role-graylog2.svg?branch=master)](https://travis-ci.com/iroquoisorg/ansible-role-graylog2)
 
 Ansible role for graylog2
 

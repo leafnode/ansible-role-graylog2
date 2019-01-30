@@ -3,6 +3,7 @@
   apt:
     name: 'python-software-properties'
     state: present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version is version_compare('16.04', '<=')
 
 - name: 'Repositories should be updated (Ubuntu)'
   apt_repository:
